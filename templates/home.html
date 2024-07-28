@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}HOME{% endblock title %}
+
+
+{% block content %}
+<table class="table border">
+
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Musician Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Album Rating</th>
+        <th scope="col">Instrument Type</th>
+        <th scope="col">Album Name</th>
+        <th scope="col">Release Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <h1>{{page}}</h1>
+        {% for i in album %}
+      <tr>
+        <th scope="row">{{i.id}}</th>
+        <td><a href="{% url 'musicianeditform' i.musician.id %}" class="text-decoration-none">{{i.musician.First_name}} {{i.musician.Last_name}}</a></td>
+        <td>{{i.musician.Email}}</td>
+        <td>{{i.rating}}</td>
+        <td>{{i.musician.instrument}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.release_date}}</td>
+        <td><a href="{% url 'albumeditform' i.id %}" class="btn btn-warning">Edit</a> <a href="{% url 'albumdeleteform' i.id %}" class="btn btn-danger">Delete</a></td>
+      </tr>
+      {% endfor %}
+
+
+
+    </tbody>
+  </table>
+{% endblock content %}
